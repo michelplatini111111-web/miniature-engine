@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f0e8">
+  <title>Undangan Pernikahan</title>
+  <style>
+    :root { --cream:#f7f0e8; --ink:#43372f; --gold:#a9824b; --rose:#ead8d0; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Georgia,serif; color:var(--ink); background:var(--cream); }
+    .cover { min-height:100svh; display:grid; place-items:center; padding:28px 16px;
+      background:linear-gradient(#0004,#0005), var(--cover-image, url(''));
+      background-size:cover; background-position:center; }
+    .card { width:min(100%,560px); padding:42px 25px; text-align:center;
+      background:#fff9f0ed; border:1px solid #c9ad83; outline:1px solid #c9ad83;
+      outline-offset:7px; }
+    .eyebrow { letter-spacing:4px; text-transform:uppercase; font:12px Arial,sans-serif; }
+    h1 { font-size:clamp(38px,9vw,64px); font-weight:normal; margin:18px 0 8px; }
+    .amp { color:var(--gold); font-style:italic; }
+    .date { margin:22px 0; letter-spacing:2px; }
+    button, .button { border:0; background:var(--gold); color:white; padding:13px 20px;
+      cursor:pointer; font:14px Arial,sans-serif; text-decoration:none; display:inline-block; }
+    main { max-width:760px; margin:auto; padding:55px 20px; text-align:center; }
+    section { margin:0 auto 42px; }
+    h2 { font-weight:normal; font-size:30px; }
+    .photo { width:min(100%,420px); max-height:500px; object-fit:cover; border-radius:180px 180px 8px 8px; }
+    .details { background:#fffaf4; padding:25px; border:1px solid var(--rose); }
+    .editor { max-width:760px; margin:20px auto 50px; padding:20px; background:white;
+      border:1px solid #ddd; border-radius:12px; font-family:Arial,sans-serif; text-align:left; }
+    .editor h2 { font: bold 20px Arial,sans-serif; }
+    label { display:block; margin:13px 0 5px; font-size:13px; }
+    input, textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font:14px Arial,sans-serif; }
+    .hint { color:#6b625b; font:12px/1.5 Arial,sans-serif; }
+    audio { width:100%; margin-top:12px; }
+    footer { padding:25px; text-align:center; background:var(--rose); }
+  </style>
+</head>
+<body>
+  <div class="cover" id="cover">
+    <div class="card">
+      <div class="eyebrow">Undangan Pernikahan</div>
+      <p>Kepada Yth.</p>
+      <p id="guest">Bapak/Ibu/Saudara/i</p>
+      <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir di acara pernikahan</p>
+      <h1><span id="name1">AKMAL</span> <span class="amp">&</span> <span id="name2">DIANA</span></h1>
+      <div class="date" id="date">Minggu, 20 Desember 2026</div>
+      <button onclick="document.getElementById('invitation').scrollIntoView({behavior:'smooth'})">Buka Undangan</button>
+    </div>
+  </div>
+
+  <main id="invitation">
+    <section>
+      <p class="eyebrow">Assalamu’alaikum Warahmatullahi Wabarakatuh</p>
+      <h2>Dengan memohon rahmat dan ridho Allah SWT</h2>
+      <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir untuk memberikan doa restu.</p>
+      <img id="photoPreview" class="photo" src="" alt="Foto pasangan" hidden>
+    </section>
+    <section class="details">
+      <h2>Detail Acara</h2>
+      <h3>Akad Nikah</h3>
+      <p id="akad">Minggu, 20 Desember 2026 • 08.00 WIB</p>
+      <h3>Resepsi</h3>
+      <p id="reception">Minggu, 20 Desember 2026 • 11.00–14.00 WIB</p>
+      <p id="venue">Gedung / lokasi acara, alamat lengkap</p>
+      <a id="mapLink" class="button" href="https://maps.google.com" target="_blank" rel="noopener">Lihat Lokasi</a>
+    </section>
+    <section>
+      <h2>Doa & Ucapan</h2>
+      <p>Merupakan kebahagiaan bagi kami atas kehadiran dan doa restu Anda.</p>
+      <p>Terima kasih.</p>
+      <h2 id="closingNames">Akmal & Diana</h2>
+    </section>
+    <audio id="musicPlayer" controls loop hidden></audio>
+  </main>
+
+  <footer>Terima kasih atas doa dan kehadiran Anda.</footer>
+
+  <div class="editor">
+    <h2>Panel Edit Undangan</h2>
+    <p class="hint">Isi bagian ini untuk mengubah tampilan undangan. Foto dan musik yang dipilih akan tampil di pratinjau browser ini.</p>
+    <label>Nama pertama</label><input id="editName1" value="Nama">
+    <label>Nama pasangan</label><input id="editName2" value="Pasangan">
+    <label>Nama tamu (opsional)</label><input id="editGuest" value="Bapak/Ibu/Saudara/i">
+    <label>Tanggal acara</label><input id="editDate" value="Minggu, 20 Desember 2026">
+    <label>Detail akad</label><input id="editAkad" value="Minggu, 20 Desember 2026 • 08.00 WIB">
+    <label>Detail resepsi</label><input id="editReception" value="Minggu, 20 Desember 2026 • 11.00–14.00 WIB">
+    <label>Nama gedung dan alamat</label><textarea id="editVenue" rows="2">Gedung / lokasi acara, alamat lengkap</textarea>
+    <label>Link Google Maps</label><input id="editMap" value="https://maps.google.com">
+    <label>Foto pasangan (JPG/PNG/WebP)</label><input id="editPhoto" type="file" accept="image/*">
+    <label>Musik latar (MP3/OGG/WAV)</label><input id="editMusic" type="file" accept="audio/*">
+    <p class="hint">Catatan: musik tidak otomatis berbunyi saat halaman dibuka karena aturan browser. Tamu dapat menekan tombol putar pada pemutar musik.</p>
+    <button type="button" onclick="downloadInvitation()">Download Undangan Siap Dibagikan</button>
+    <button type="button" onclick="window.print()">Cetak / Simpan PDF</button>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    let photoData = "", musicData = "";
+    const fields = [
+      ['editName1','name1'], ['editName2','name2'], ['editGuest','guest'],
+      ['editDate','date'], ['editAkad','akad'], ['editReception','reception'],
+      ['editVenue','venue']
+    ];
+    fields.forEach(([input, output]) => $(input).addEventListener('input', () => {
+      $(output).textContent = $(input).value;
+      if (input === 'editName1' || input === 'editName2')
+        $('closingNames').textContent = $('editName1').value + ' & ' + $('editName2').value;
+    }));
+    $('editMap').addEventListener('input', () => {
+      const url = $('editMap').value.trim();
+      $('mapLink').href = /^https?:\/\//i.test(url) ? url : 'https://maps.google.com';
+    });
+    $('editPhoto').addEventListener('change', e => {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        photoData = reader.result;
+        $('photoPreview').src = photoData; $('photoPreview').hidden = false;
+        $('cover').style.backgroundImage = `linear-gradient(#0004,#0005), url("${photoData}")`;
+      };
+      reader.readAsDataURL(file);
+    });
+    $('editMusic').addEventListener('change', e => {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        musicData = reader.result;
+        $('musicPlayer').src = musicData;
+        $('musicPlayer').hidden = false;
+      };
+      reader.readAsDataURL(file);
+    });
+    function downloadInvitation() {
+      const copy = document.documentElement.cloneNode(true);
+      const byId = id => copy.querySelector('#' + id);
+      const values = {
+        name1: $('editName1').value, name2: $('editName2').value,
+        guest: $('editGuest').value, date: $('editDate').value,
+        akad: $('editAkad').value, reception: $('editReception').value,
+        venue: $('editVenue').value
+      };
+      Object.entries(values).forEach(([id, value]) => { byId(id).textContent = value; });
+      byId('closingNames').textContent = values.name1 + ' & ' + values.name2;
+      const map = $('editMap').value.trim();
+      byId('mapLink').setAttribute('href', /^https?:\/\//i.test(map) ? map : 'https://maps.google.com');
+      if (photoData) {
+        byId('photoPreview').setAttribute('src', photoData);
+        byId('photoPreview').hidden = false;
+        byId('cover').style.backgroundImage = `linear-gradient(#0004,#0005), url("${photoData}")`;
+      }
+      if (musicData) {
+        byId('musicPlayer').setAttribute('src', musicData);
+        byId('musicPlayer').hidden = false;
+      }
+      const editor = copy.querySelector('.editor');
+      if (editor) editor.remove();
+      const script = copy.querySelector('script');
+      if (script) script.remove();
+      const blob = new Blob(['<!DOCTYPE html>\\n' + copy.outerHTML], {type:'text/html;charset=utf-8'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'undangan-saya.html';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+</body>
+</html>
